@@ -1,7 +1,7 @@
 
 export const translations = {
   en: {
-    appName: 'BloodLink Bangladesh',
+  appName: 'Red Connector',
     tagline: 'Connect to save a life',
     findDonor: 'Find a Donor',
     registerAsDonor: 'Register as a Donor',
@@ -31,14 +31,17 @@ export const translations = {
     invalidPhone: 'Please enter a valid 11-digit mobile number',
     selectBloodGroup: 'Select Blood Group',
     selectLocation: 'Select Location',
-    welcome: 'Welcome to BloodLink',
-    introText: 'The easiest way to find blood donors or register to donate in Bangladesh. Your single pint of blood can save three lives.',
+  welcome: 'Welcome to Red Connector',
+  introText: 'The easiest way to find blood donors or register to donate in Bangladesh. Your single pint of blood can save three lives.',
     howItWorks: 'How It Works',
     step1: '1. Search for a donor by blood group and location.',
     step2: '2. View donor profiles and contact them directly.',
     step3: '3. Register yourself as a donor to help others.',
     viewProfile: 'View Profile',
-    loading: 'Loading...'
+    loading: 'Loading...',
+    startSearchHint: 'Use the filters above and click search to find donors',
+    photo: 'Photo (optional)',
+  errorSubmitting: 'There was an error submitting your registration. Please try again.'
   },
   bn: {
     appName: 'ব্লাডলিংক বাংলাদেশ',
@@ -78,6 +81,9 @@ export const translations = {
     step2: '২. দাতার প্রোফাইল দেখুন এবং সরাসরি যোগাযোগ করুন।',
     step3: '৩. অন্যদের সাহায্য করার জন্য নিজেকে দাতা হিসেবে নিবন্ধন করুন।',
     viewProfile: 'প্রোফাইল দেখুন',
-    loading: 'লোড হচ্ছে...'
+    loading: 'লোড হচ্ছে...',
+    startSearchHint: 'রক্তদাতা খুঁজতে উপরের ফিল্টারগুলি ব্যবহার করুন এবং অনুসন্ধান করুন',
+    photo: 'ছবি (ঐচ্ছিক)',
+  errorSubmitting: 'নিবন্ধন জমা দিতে সমস্যা হয়েছে। আবার চেষ্টা করুন।'
   },
 };

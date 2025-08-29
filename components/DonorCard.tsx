@@ -14,7 +14,7 @@ export const DonorCard = ({ donor }: DonorCardProps) => {
   const { t, language } = useLanguage();
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+    <div className="card overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
       <div className="p-5">
         <div className="flex items-center mb-4">
           <div className="bg-red-100 p-3 rounded-full mr-4">
@@ -31,7 +31,7 @@ export const DonorCard = ({ donor }: DonorCardProps) => {
         </div>
         <Link
           to={`/profile/${donor.id}`}
-          className={`w-full block text-center bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-green-800 transition-colors duration-300 ${language === 'bn' ? 'font-display' : 'font-sans'}`}
+          className={`w-full block btn btn-primary ${language === 'bn' ? 'font-display' : 'font-sans'}`}
         >
           {t('viewProfile')}
         </Link>

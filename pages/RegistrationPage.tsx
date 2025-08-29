@@ -13,6 +13,7 @@ type FormInputs = {
   location: string;
   nearestHospital?: string;
   socialMediaLink?: string;
+  photo?: FileList;
 };
 
 export const RegistrationPage = () => {
@@ -20,11 +21,38 @@ export const RegistrationPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log('Form data submitted:', data);
-    // Here you would typically send the data to a backend (e.g., Firebase)
-    // For this prototype, we'll just show a success message.
-    setIsSubmitted(true);
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    try {
+      const { collection, addDoc } = await import('firebase/firestore');
+      const { db } = await import('../src/config/firebase');
+      const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
+      const { storage } = await import('../src/config/firebase');
+
+      let photoUrl = undefined;
+      if (data.photo && data.photo.length > 0) {
+        const file = data.photo[0];
+        const storageRef = ref(storage, `donor_photos/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        photoUrl = await getDownloadURL(storageRef);
+      }
+
+      await addDoc(collection(db, 'donors'), {
+        fullName: data.fullName,
+        bloodGroup: data.bloodGroup,
+        mobileNumber: data.mobileNumber,
+        location: data.location,
+        nearestHospital: data.nearestHospital || null,
+        socialMediaLink: data.socialMediaLink || null,
+        photoUrl: photoUrl || null,
+        createdAt: new Date().toISOString(),
+        status: 'active'
+      });
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error adding donor:', error);
+      alert(t('errorSubmitting'));
+    }
   };
   
   const formClass = language === 'bn' ? 'font-display' : 'font-sans';
@@ -42,7 +70,7 @@ export const RegistrationPage = () => {
 
   return (
     <div className={`container mx-auto max-w-2xl py-10 px-4 ${formClass}`}>
-      <div className="bg-white p-8 rounded-xl shadow-lg">
+      <div className="card">
         <div className="text-center mb-8">
             <BloodDropIcon className="h-16 w-16 text-secondary mx-auto mb-2" />
             <h1 className="text-3xl font-bold text-primary">{t('registerAsDonor')}</h1>
@@ -134,12 +162,17 @@ export const RegistrationPage = () => {
           </div>
 
           <div>
+            <label htmlFor="photo" className="block text-sm font-medium text-gray-700">{t('photo')}</label>
+            <input id="photo" type="file" accept="image/*" {...register('photo')} className="mt-1" />
+          </div>
+
+          <div>
             <button
-              type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-secondary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
-            >
-              {t('submitRegistration')}
-            </button>
+                type="submit"
+                className="w-full flex justify-center btn btn-secondary text-lg"
+              >
+                {t('submitRegistration')}
+              </button>
           </div>
         </form>
       </div>

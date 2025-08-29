@@ -20,13 +20,13 @@ export const HomePage = () => {
       <div className="mt-12 flex flex-col md:flex-row justify-center items-center gap-4">
         <Link
           to="/search"
-          className={`w-full md:w-auto text-center bg-secondary text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-red-700 transition-transform duration-300 hover:scale-105 shadow-lg ${language === 'bn' ? 'font-display' : 'font-sans'}`}
+          className={`w-full md:w-auto text-center btn btn-secondary text-lg shadow-lg ${language === 'bn' ? 'font-display' : 'font-sans'}`}
         >
           {t('findDonor')}
         </Link>
         <Link
           to="/register"
-          className={`w-full md:w-auto text-center bg-primary text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-green-800 transition-transform duration-300 hover:scale-105 shadow-lg ${language === 'bn' ? 'font-display' : 'font-sans'}`}
+          className={`w-full md:w-auto text-center btn btn-primary text-lg shadow-lg ${language === 'bn' ? 'font-display' : 'font-sans'}`}
         >
           {t('registerAsDonor')}
         </Link>

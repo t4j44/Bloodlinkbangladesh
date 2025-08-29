@@ -20,16 +20,16 @@ export const Header = () => {
             <span className={`text-xl font-bold text-primary ${language === 'bn' ? 'font-display' : 'font-sans'}`}>{t('appName')}</span>
           </Link>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center border border-gray-300 rounded-full">
+            <div className="flex items-center border border-gray-300 rounded-full overflow-hidden">
                <button
                   onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 text-sm rounded-full transition-colors duration-300 ${language === 'en' ? 'bg-primary text-white' : 'text-gray-600'}`}
+                  className={`px-2 py-1 text-sm transition-colors duration-300 ${language === 'en' ? 'bg-primary text-white' : 'text-gray-600'}`}
                 >
                   EN
                 </button>
                 <button
                   onClick={() => handleLanguageChange('bn')}
-                  className={`px-3 py-1 text-sm rounded-full transition-colors duration-300 ${language === 'bn' ? 'bg-primary text-white' : 'text-gray-600'}`}
+                  className={`px-2 py-1 text-sm transition-colors duration-300 ${language === 'bn' ? 'bg-primary text-white' : 'text-gray-600'}`}
                 >
                   BN
                 </button>

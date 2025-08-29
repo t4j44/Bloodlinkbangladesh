@@ -11,6 +11,7 @@ export const SearchPage = () => {
   const [bloodGroupFilter, setBloodGroupFilter] = useState('');
   const [locationFilter, setLocationFilter] = useState('');
   const [loading, setLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
   
   const formClass = language === 'bn' ? 'font-display' : 'font-sans';
 
@@ -24,6 +25,7 @@ export const SearchPage = () => {
 
   const handleSearch = () => {
     setLoading(true);
+  setHasSearched(true);
     // Simulate API call
     setTimeout(() => {
         // The filtering is already done by useMemo, this is just to show a loading state
@@ -76,6 +78,10 @@ export const SearchPage = () => {
       {loading ? (
         <div className="text-center py-10">
             <p className="text-lg text-gray-600">{t('loading')}</p>
+        </div>
+      ) : !hasSearched ? (
+        <div className="text-center py-10 bg-white rounded-lg shadow-md">
+          <h3 className="text-lg text-gray-600">{t('startSearchHint')}</h3>
         </div>
       ) : filteredDonors.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
